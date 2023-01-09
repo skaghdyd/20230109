@@ -27,6 +27,11 @@
 	text-decoration: none;
 	margin-right: 50px;
 }
+
+#logo {
+	width:50px;
+	height:50px;
+}
 </style>
 </head>
 <body>
@@ -45,7 +50,8 @@
 			%>
 			<a href="signUp.jsp">회원가입</a>
 		</div>
-		<div align=left>
+		<div id="logoDiv" align=left>
+			<img id="logo" src="..\\yhj_jsp\\image\\mama.png" alt="logo">
 			<a target="iframe1" href="main.jsp">로고</a>
 		</div>
 		<div align=right>
