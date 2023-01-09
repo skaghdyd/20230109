@@ -51,7 +51,7 @@ public class Dao {
 			String password = "tiger";
 			conn = DriverManager.getConnection(url, user, password);
 			System.out.println("DB연결 성공!");
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
