@@ -1,0 +1,16 @@
+Index: WebContent/index.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/WebContent/index.jsp b/WebContent/index.jsp
+--- a/WebContent/index.jsp	(revision 93cc0aa351c5866c1349e9f8116f3c4ab5a0ed35)
++++ b/WebContent/index.jsp	(revision 409337f300d24f7d0fb628617ea8aad21a0a09db)
+@@ -10,5 +10,6 @@
+ <h1>안녕하세요..</h1>
+ <h1>추가..</h1>
+ <h1>추가..by heejaeyoon</h1>
++<h1>차민지 추가했습니다.</h1>
+ </body>
+ </html>
+\ No newline at end of file
