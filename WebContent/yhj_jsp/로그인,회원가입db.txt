@@ -1,0 +1,25 @@
+create sequence member_seq   
+increment by 1
+start with 1
+minvalue 1
+maxvalue 10000
+nocache;
+
+
+create table member(
+	no number primary key,
+	userId varchar2(20) not null,
+	userPw varchar2(20),
+	userName varchar2(30) not null,
+	userEmail varchar2(30),
+	userPhone varchar2(20),
+	userPostcode varchar2(20),
+	userAdd varchar2(200),
+	userDetailAdd varchar2(200),
+	userGender varchar2(10),
+	userBirth varchar2(20),
+	userJoindate varchar2(20) default sysdate,	
+	userPoint number			
+);
+
+insert into members values(memberseq.nextval,?,?,?,?,?,?,?,?,?,?,?,?);
