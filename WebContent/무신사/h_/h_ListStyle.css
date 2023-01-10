@@ -1,0 +1,88 @@
+/*노말라이즈*/
+html,body{
+    overflow-x: hidden;
+}
+body,ul,li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+/*lib*/
+.con{
+    margin-left: auto;
+    margin-right: auto;
+}
+.h_imgBox>img{
+    margin: auto;
+    align-items: center;
+    height:500px;
+    width:50%;
+    display: block;
+}
+.cell{
+    float: left;
+    box-sizing: border-box;
+}
+.row::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*custom*/
+.con{
+    max-width: 1000px;
+    height: 500px;
+}
+/*로고*/
+.h_logo{
+    margin-top: 20px;
+    text-align: center;
+}
+/*bannerBox*/
+.h_bnBox1{
+    margin-top:20px;
+    background-color: black;
+}
+@media  (max-width: 700px){
+    .h_bnBox1 > .imgBox{
+        margin-left: -50%;
+    }
+}
+
+/*list box*/
+.h_listBox1 >ul >li {
+     
+    padding: 0 10px;
+    margin-top: 20px;
+}
+
+@media(min-width:801px){
+    .h_listBox1> ul> li {
+        background-color: beige;
+    width: 30%;   
+}
+}
+@media (max-width:800px) and (min-width:601px){
+    .h_listBox1 >ul >li{
+        width: 33.3333%;
+    }
+}
+@media (max-width:600px) and (min-width:401px){
+    .h_listBox1 >ul >li{
+        width: 50%;
+    }
+}
+@media (max-width:400px) {
+    .h_listBox1 >ul >li{
+        width: 100%;
+    }
+}
+.h_listBox1> ul{
+    margin: 0 -10px;
+}
