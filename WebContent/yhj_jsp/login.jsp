@@ -77,7 +77,7 @@
 			<input type="text" class="form-control" name="userId"
 				placeholder="아이디">
 		</div>
-
+	
 		<div class="form-group">
 			<input type="password" class="form-control" name="userPw"
 				placeholder="비밀번호">
@@ -99,7 +99,7 @@
 
 	</form>
 
-
+	
 
 	<hr width="350px" align="center">
 	<p class="easy-login" align="center">더욱 간편한 로그인</p>
@@ -113,7 +113,7 @@
        </a>
 	
       <a href="javascript:void(0)" onclick="kakaoLogout();">
-          <span style align="center" m >카카오 로그아웃</span>
+          <span style align="center">카카오 로그아웃</span>
       </a>
 	<div class="button-group">
 		<div button type="button" class="btn btn-primary btn-lg">
