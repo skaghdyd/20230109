@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+#iframe1 {
+	width: 100%;
+	height: 100vh;
+}
+
+#chatButton {
+	position: fixed;
+	bottom:32px;
+	right:32px;
+	border: 1px solid black;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	background-color: black;
+	color: white;
+}
+
+#chatBox {
+	display: none;
+	position: fixed;
+	bottom: 81px;
+	right: 32px;
+	width: 400px;
+	height: 500px;
+	background-color: white;
+}
+
+#messageWindow {
+	position: absolute;
+	bottom: 50px;
+	border: 1px solid black;
+	width: 100%;
+	height: 450px;
+	margin-right: 5px;
+	overflow: auto;
+}
+
+#inputWindow {
+	position: absolute;
+	bottom: 0px;
+	border: 1px solid black;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+}
+
+#inputMessage {
+	width: 300px;
+}

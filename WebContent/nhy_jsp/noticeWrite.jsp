@@ -5,50 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Notice</title>
-<style>
-* {
-	background-color: white;
-}
-
-#mainDiv {
-	display: flex;
-	height: auto;
-	min-height: 100%;
-	padding-bottom: 200px;
-}
-
-#main {
-	width: 100%;
-	padding: 20px 100px 20px 100px;
-	border: 1px solid black;
-	margin: 10px auto;
-}
-
-#board_write {
-	border: 1px solid black;
-}
-
-#titleDiv, #contentDiv {
-	border: 1px solid black;
-}
-
-#title {
-	width: 99%;
-	height: 100%;
-	border: none;
-}
-
-#content {
-	width: 99%;
-	height: 100%;
-	border: none;
-	resize: none;
-}
-
-#main * {
-	margin-bottom: 5px;
-}
-</style>
+<link rel="stylesheet" href="./css/noticeWrite.css" />
 </head>
 <body>
 	<div id="mainDiv">

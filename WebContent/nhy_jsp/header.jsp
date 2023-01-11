@@ -5,72 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
-<style type="text/css">
-#header_header {
-	width: 100%;
-	height: 100px;
-	line-height: 100px;
-	display: flex;
-	justify-content: space-between;
-}
-
-#header_nav {
-	width: 100%;
-	height: 23px;
-	border-top: 1px solid red;
-	border-bottom: 1px solid red;
-	margin-right: 10%;
-	display: flex;
-	justify-content: space-evenly;
-}
-
-#header_nav * {
-	text-decoration: none;
-	color: black;
-}
-
-ul, ol, li {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	text-align:center;
-	background-color: white;
-}
-
-#header_nav_menu>li {
-	display: inline-block;
-	position: relative;
-	width:200px;
-}
-
-#header_nav_menu>li:hover {
-	background-color: gray;
-}
-
-#header_nav_menu>li:hover>a{
-	color: white;
-}
-
-#header_nav_menu>li ul.header_nav_sub_menu {
-	display: none;
-}
-
-#header_nav_menu>li ul.header_nav_sub_menu>li:hover {
-	background-color: gray;
-	color: white;
-}
-
-#header_nav_menu>li:hover ul.header_nav_sub_menu {
-	display: block;
-	position: absolute;
-	width:200px;
-}
-
-#logo {
-	width: 100px;
-	height: 100px;
-}
-</style>
+<link rel="stylesheet" href="./css/header.css" />
 </head>
 <body>
 	<header id="header_header">
@@ -83,7 +18,7 @@ ul, ol, li {
 			<%
 				if (session.getAttribute("loginId") == null) {
 			%>
-			<a href="loginAction.jsp">로그인</a>
+			<a target="iframe1" href="login.jsp">로그인</a>
 			<%
 				} else {
 			%>

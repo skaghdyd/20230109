@@ -17,9 +17,9 @@
 			<!-- Swiper -->
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide s1">Slide 1</div>
-					<div class="swiper-slide s2">Slide 2</div>
-					<div class="swiper-slide s3">Slide 3</div>
+					<div class="swiper-slide s1"></div>
+					<div class="swiper-slide s2"></div>
+					<div class="swiper-slide s3"></div>
 				</div>
 				<div class="swiper-scrollbar"></div>
 			</div>

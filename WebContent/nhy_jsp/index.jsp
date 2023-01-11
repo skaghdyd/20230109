@@ -13,66 +13,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
-<style>
-/* * {
-	background-color: white;
-} */
-
-#main {
-	padding-top: 20px;
-	width: 100%;
-	height: auto;
-	min-height: 100%;
-	padding-bottom: 200px;
-}
-
-#iframe1 {
-	width: 100%;
-	height: 100vh;
-}
-
-#chatButton {
-	position: fixed;
-	bottom:30px;
-	right:30px;
-	border: 1px solid black;
-	width: 50px;
-	height: 50px;
-	line-height: 50px;
-}
-
-#chatBox {
-	display: none;
-	position: fixed;
-	bottom: 81px;
-	right: 32px;
-	width: 400px;
-	height: 500px;
-}
-
-#messageWindow {
-	position: absolute;
-	bottom: 50px;
-	border: 1px solid black;
-	width: 100%;
-	height: 450px;
-	margin-right: 5px;
-	overflow: auto;
-}
-
-#inputWindow {
-	position: absolute;
-	bottom: 0px;
-	border: 1px solid black;
-	width: 100%;
-	height: 50px;
-	line-height: 50px;
-}
-
-#inputMessage {
-	width: 300px;
-}
-</style>
+<link rel="stylesheet" href="./css/reset.css" />
+<link rel="stylesheet" href="./css/index.css" />
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

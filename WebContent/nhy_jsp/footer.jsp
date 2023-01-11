@@ -5,27 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Footer</title>
-<style type="text/css">
-#footer_footer {
-	width: 100%;
-	text-align: center;
-	height: 200px;
-	position: relative;
-	transform: translateY(-100%);
-}
-
-.bottomtop {
-	font-size: 15px;
-}
-
-.bottombt {
-	font-size: 12px;
-}
-</style>
+<link rel="stylesheet" href="./css/footer.css" />
 </head>
 <body>
 	<br>
-	<hr width=80% class="categoryhr">
+	<hr width=100% class="categoryhr">
 	<footer id="footer_footer">
 		<table width=80% align="center">
 			<tr>

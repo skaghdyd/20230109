@@ -5,35 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Notice</title>
-<style>
-* {
-	background-color: white;
-}
-
-#left {
-	width: 300px;
-	margin-right: 50px;
-}
-
-#left ul {
-	background-color: black;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-#left ul li {
-	margin-left: 20px;
-	padding-top: 5px;
-	background-color: black;
-}
-
-#left ul li a {
-	background-color: black;
-	color: white;
-	text-decoration: none;
-}
-</style>
+<link rel="stylesheet" href="./css/noticeAside.css" />
 </head>
 <body>
 	<aside id="left">

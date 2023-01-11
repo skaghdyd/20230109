@@ -24,33 +24,8 @@ System.out.println(pageVO.toString());
 <head>
 <meta charset="UTF-8">
 <title>Notice</title>
-<style>
-* {
-	background-color: white;
-}
-
-#mainDiv {
-	display: flex;
-	height: auto;
-	min-height: 100%;
-	padding-bottom: 200px;
-}
-
-#main {
-	width: 100%;
-	padding: 20px 100px 20px 100px;
-	border: 1px solid black;
-	margin: 10px auto;
-}
-
-#noticeTable {
-	width: 100%;
-}
-
-#paging {
-	margin: 20px 0 20px 0;
-}
-</style>
+<link rel="stylesheet" href="./css/reset.css" />
+<link rel="stylesheet" href="./css/notice.css" />
 </head>
 <body>
 	<div id="mainDiv">
