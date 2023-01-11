@@ -48,26 +48,27 @@ if (file == null) {
 	System.out.println("Content : " + mr.getParameter("content"));
 	System.out.println("**********************************************************");
 	
-	int idx = 0;
-	String author = (String) session.getAttribute("loginId");
+	int idx = Integer.parseInt(mr.getParameter("idx"));
+	String author = (String)session.getAttribute("loginId");
 	String title = mr.getParameter("title");
 	String content = mr.getParameter("content");
 	String saveFileName = file==null ? null : file.getName();
 	String realFileName = newFile==null ? null : newFile.getName();
-	String createDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
+	String createDate = "";
 	int hit = 0;
-	NoticeDto noticeDto = new NoticeDto(idx, author, title, content, saveFileName, realFileName, createDate, hit, "");
+	String modifyDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
+	NoticeDto noticeDto = new NoticeDto(idx, author, title, content, saveFileName, realFileName, createDate, hit, modifyDate);
 	Dao dao = Dao.getInstance();
-	int result = dao.notice_write(noticeDto);
+	int result = dao.notice_update(noticeDto);
 	
 	if(result == 1) {
 		writer.println("<script>");
-		writer.println("alert('글 작성 완료.')");
+		writer.println("alert('글 수정 완료.')");
 		writer.println("location.href='notice.jsp'");
 		writer.println("</script>");		
 	} else {
 		writer.println("<script>");
-		writer.println("alert('글 작성 실패.')");
+		writer.println("alert('글 수정 실패.')");
 		writer.println("location.href='notice.jsp'");
 		writer.println("</script>");
 	}

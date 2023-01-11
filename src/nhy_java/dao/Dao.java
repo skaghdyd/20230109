@@ -65,7 +65,7 @@ public class Dao {
 //				+ ")list\n"
 //				+ "where rn>? and rn<=?";
 		String sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
-				+ "    from (select idx, author, title, content, fileName, createDate, hit\r\n"
+				+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
 				+ "            from notice order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -77,10 +77,11 @@ public class Dao {
 				String author = rs.getString("author");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				String fileName = rs.getString("fileName");
+				String saveFileName = rs.getString("saveFileName");
+				String realFileName = rs.getString("realFileName");
 				String createDate = rs.getString("createDate");
 				int hit = rs.getInt("hit");
-				NoticeDto noticeDto = new NoticeDto(idx, author, title, content, fileName, createDate, hit);
+				NoticeDto noticeDto = new NoticeDto(idx, author, title, content, saveFileName, realFileName, createDate, hit, "");
 				list.add(noticeDto);
 			}
 		} catch (SQLException e) {
@@ -92,7 +93,7 @@ public class Dao {
 	}
 
 	public NoticeDto notice_selectOne(int idx) {
-		String sql = "select idx, author, title, content, fileName, createDate, hit\r\n" + "from notice where idx = ?";
+		String sql = "select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n" + "from notice where idx = ?";
 		NoticeDto noticeDto = null;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -103,10 +104,11 @@ public class Dao {
 				String author = rs.getString("author");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				String fileName = rs.getString("fileName");
+				String saveFileName = rs.getString("saveFileName");
+				String realFileName = rs.getString("realFileName");
 				String createDate = rs.getString("createDate");
 				int hit = rs.getInt("hit");
-				noticeDto = new NoticeDto(idx, author, title, content, fileName, createDate, hit);
+				noticeDto = new NoticeDto(idx, author, title, content, saveFileName, realFileName, createDate, hit, "");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -117,8 +119,8 @@ public class Dao {
 	}
 
 	public int notice_write(NoticeDto noticeDto) {
-		String sql = "insert into notice (idx, author, title, content, fileName, createDate, hit)\r\n"
-				+ "values(?,?,?,?,?,?,?)";
+		String sql = "insert into notice (idx, author, title, content, saveFileName, realFileName, createDate, hit)\r\n"
+				+ "values(?,?,?,?,?,?,?,?)";
 		int rs = 0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -126,9 +128,10 @@ public class Dao {
 			pstmt.setString(2, noticeDto.getAuthor());
 			pstmt.setString(3, noticeDto.getTitle());
 			pstmt.setString(4, noticeDto.getContent());
-			pstmt.setString(5, noticeDto.getFileName());
-			pstmt.setString(6, noticeDto.getCreateDate());
-			pstmt.setInt(7, noticeDto.getHit());
+			pstmt.setString(5, noticeDto.getSaveFileName());
+			pstmt.setString(6, noticeDto.getRealFileName());
+			pstmt.setString(7, noticeDto.getCreateDate());
+			pstmt.setInt(8, noticeDto.getHit());
 			rs = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -170,6 +173,57 @@ public class Dao {
 		}
 
 		return postCount;
+	}
+	
+	public int notice_update(NoticeDto noticeDto) {
+		//파일 수정 안한 경우
+		if(noticeDto.getSaveFileName()==null || noticeDto.getRealFileName()==null) {
+			String sql = "update notice\r\n" + 
+					"set title = ?,\r\n" + 
+					"content = ?,\r\n" + 
+					"modifydate = ?\r\n" + 
+					"where idx = ?";
+			int rs = 0;
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, noticeDto.getTitle());
+				pstmt.setString(2, noticeDto.getContent());
+				pstmt.setString(3, noticeDto.getModifyDate());
+				pstmt.setInt(4, noticeDto.getIdx());
+				rs = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return rs;
+			
+		//파일 수정을 한 경우
+		} else {
+			String sql = "update notice\r\n" + 
+					"set title = ?,\r\n" + 
+					"content = ?,\r\n" + 
+					"saveFileName = ?,\r\n" + 
+					"realFileName = ?,\r\n" + 
+					"modifydate = ?\r\n" + 
+					"where idx = ?";
+			int rs = 0;
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, noticeDto.getTitle());
+				pstmt.setString(2, noticeDto.getContent());
+				pstmt.setString(3, noticeDto.getSaveFileName());
+				pstmt.setString(4, noticeDto.getRealFileName());
+				pstmt.setString(5, noticeDto.getModifyDate());
+				pstmt.setInt(6, noticeDto.getIdx());
+				rs = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return rs;
+		}
 	}
 	
 	public static void main(String[] args) {

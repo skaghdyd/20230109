@@ -17,7 +17,6 @@ Dao dao = Dao.getInstance();
 List<NoticeDto> noticeList = dao.notice_selectAll(currentPage);
 int totalPost = dao.notice_getTotalPost();
 PageVO pageVO = new PageVO(currentPage, 10, totalPost);
-System.out.println(pageVO.toString());
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +25,7 @@ System.out.println(pageVO.toString());
 <title>Notice</title>
 <link rel="stylesheet" href="./css/reset.css" />
 <link rel="stylesheet" href="./css/notice.css" />
+<link rel="stylesheet" href="./css/noticeAside.css" />
 </head>
 <body>
 	<div id="mainDiv">
@@ -52,7 +52,7 @@ System.out.println(pageVO.toString());
 					%>
 					<tr>
 						<td width="70"><%=noticeDto.getIdx()%></td>
-						<td width="500"><a href="#"><%=noticeDto.getTitle()%></a></td>
+						<td width="500"><a target="iframe1" href="noticeRead.jsp?idx=<%=noticeDto.getIdx()%>"><%=noticeDto.getTitle()%></a></td>
 						<td width="120"><%=noticeDto.getAuthor()%></td>
 						<td width="100"><%=year + "-" + month + "-" + date%></td>
 						<td width="100"><%=noticeDto.getHit()%></td>
@@ -60,7 +60,6 @@ System.out.println(pageVO.toString());
 					<%
 					}
 					%>
-
 				</tbody>
 			</table>
 			<div id="paging">
@@ -68,9 +67,8 @@ System.out.println(pageVO.toString());
 				if (totalPost > 0) {
 					if (pageVO.isPrev()) {
 				%>
-				<a target="iframe1" href="notice.jsp?currentPage=1">처음</a> <a
-					target="iframe1"
-					href="notice.jsp?currentPage=<%=pageVO.getFirstPage() - 1%>">이전</a>
+				<a target="iframe1" href="notice.jsp?currentPage=1">처음</a>
+				<a target="iframe1"	href="notice.jsp?currentPage=<%=pageVO.getFirstPage() - 1%>">이전</a>
 				<%
 				}
 				for (int i = pageVO.getFirstPage(); i <= pageVO.getLastPage(); i++) {
@@ -80,19 +78,22 @@ System.out.println(pageVO.toString());
 				}
 				if (pageVO.isNext()) {
 				%>
-				<a target="iframe1"
-					href="notice.jsp?currentPage=<%=pageVO.getLastPage() + 1%>">다음</a> <a
-					target="iframe1"
-					href="notice.jsp?currentPage=<%=pageVO.getEndPage()%>">끝</a>
+				<a target="iframe1"	href="notice.jsp?currentPage=<%=pageVO.getLastPage() + 1%>">다음</a>
+				<a target="iframe1"	href="notice.jsp?currentPage=<%=pageVO.getEndPage()%>">끝</a>
 				<%
 				}
 				}
 				%>
 			</div>
+			<%
+			if(session.getAttribute("loginId")!=null){
+			%>
 			<div align="right">
-				<input id="noticeWrite" type="button" value="글쓰기"
-					onclick="location.href='noticeWrite.jsp'">
+				<input id="noticeWrite" type="button" value="글쓰기" onclick="location.href='noticeWrite.jsp'">
 			</div>
+			<%
+			}
+			%>
 		</section>
 	</div>
 </body>

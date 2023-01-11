@@ -18,7 +18,8 @@
 			<%
 				if (session.getAttribute("loginId") == null) {
 			%>
-			<a target="iframe1" href="login.jsp">로그인</a>
+			<a href="login.jsp">로그인</a>
+			<a href="signUp.jsp">회원가입</a>
 			<%
 				} else {
 			%>
@@ -26,7 +27,6 @@
 			<%
 				}
 			%>
-			<a href="signUp.jsp">회원가입</a>
 		</div>
 	</header>
 	<div align="right">
@@ -72,10 +72,10 @@
 			<li>
 				<a target="iframe1" href="notice.jsp">고객센터</a>
 				<ul class="header_nav_sub_menu">
-					<li>고객센터_하위메뉴1</li>
-					<li>고객센터_하위메뉴2</li>
-					<li>고객센터_하위메뉴3</li>
-					<li>고객센터_하위메뉴4</li>
+					<li><a target="iframe1" href="notice.jsp">공지사항</a></li>
+					<li>자주하는 질문</li>
+					<li>1:1 문의</li>
+					<li>대량주문 문의</li>
 				</ul>
 			<li>
 		</ul>

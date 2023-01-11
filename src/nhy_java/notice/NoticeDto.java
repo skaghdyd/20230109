@@ -5,20 +5,24 @@ public class NoticeDto {
 	private String author; // 작성자
 	private String title; // 제목
 	private String content; // 내용
-	private String fileName; // 첨부파일명
+	private String saveFileName; // 기존 첨부파일명
+	private String realFileName; // 실제 서버에 저장되는 첨부파일명
 	private String createDate; // 작성일
 	private int hit; // 조회수
+	private String modifyDate; // 수정일
 
-	public NoticeDto(int idx, String author, String title, String content, String fileName, String createDate,
-			int hit) {
+	public NoticeDto(int idx, String author, String title, String content, String saveFileName, String realFileName, String createDate,
+			int hit, String modifyDate) {
 		super();
 		this.idx = idx;
 		this.author = author;
 		this.title = title;
 		this.content = content;
-		this.fileName = fileName;
+		this.saveFileName = saveFileName;
+		this.realFileName = realFileName;
 		this.createDate = createDate;
 		this.hit = hit;
+		this.modifyDate = modifyDate;
 	}
 
 	public int getIdx() {
@@ -53,12 +57,20 @@ public class NoticeDto {
 		this.content = content;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getSaveFileName() {
+		return saveFileName;
+	}
+	
+	public void setSaveFileName(String savefileName) {
+		this.saveFileName = savefileName;
+	}
+	
+	public String getRealFileName() {
+		return realFileName;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setFileName(String realfileName) {
+		this.realFileName = realfileName;
 	}
 
 	public String getCreateDate() {
@@ -76,10 +88,20 @@ public class NoticeDto {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+	
+	public String getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(String modifyDate) {
+		this.modifyDate = modifyDate;
+	}
 
 	@Override
 	public String toString() {
 		return "NoticeDto [idx=" + idx + ", author=" + author + ", title=" + title + ", content=" + content
-				+ ", fileName=" + fileName + ", createDate=" + createDate + ", hit=" + hit + "]";
+				+ ", saveFileName=" + saveFileName + ", realFileName=" + realFileName + ", createDate=" + createDate
+				+ ", hit=" + hit + ", modifyDate=" + modifyDate + "]";
 	}
+	
 }

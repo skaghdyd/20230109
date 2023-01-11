@@ -3,9 +3,12 @@
 #left {
 	width: 300px;
 	background-color: black;
+	padding-top: 10px;
+    padding-left: 10px;
 }
 
-#left ul {
+#left>h4{
+	color: white;
 }
 
 #left ul li {

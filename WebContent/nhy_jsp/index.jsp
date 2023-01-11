@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String loginId = (String) session.getAttribute("loginId");
-	if(loginId==null){
+	String userId = (String) session.getAttribute("userId");
+	if(userId==null){
 		System.out.println("세션 없음");
 	} else {
 		System.out.println("세션 있음");
@@ -43,7 +43,7 @@
 		function chatToggle() {
 			if ($("#chatBox").css("display")=="block"){
 				$("#chatBox").hide();
-				webSocket.send("SYSTEM|<%=loginId%>님이 퇴장하셨습니다.");
+				webSocket.send("SYSTEM|<%=userId%>님이 퇴장하셨습니다.");
 				webSocket.close();
 			} else {
 				$("#chatBox").show();
@@ -53,7 +53,7 @@
 			    };
 			    webSocket.onopen = function(event) {
 			        onOpen(event)
-			        webSocket.send("SYSTEM|<%=loginId%>님이 입장하셨습니다.");
+			        webSocket.send("SYSTEM|<%=userId%>님이 입장하셨습니다.");
 			    };
 			    webSocket.onmessage = function(event) {
 			        onMessage(event)
@@ -85,7 +85,7 @@
 	            		$("#messageWindow").html() + "<p class='chat_content'>나 : " + inputMessage.value + "</p>"
 	            		);
 	        }
-	        webSocket.send("<%=loginId%>" + "|" + inputMessage.value);
+	        webSocket.send("<%=userId%>" + "|" + inputMessage.value);
 	        inputMessage.value = "";
 	    }
 	    
@@ -104,7 +104,7 @@
 	    
 	    //브라우저 창을 닫을때 퇴장 메세지 전송
 	    window.addEventListener('beforeunload', function(){
-    		webSocket.send("SYSTEM|<%=loginId%>님이 퇴장하셨습니다.");
+    		webSocket.send("SYSTEM|<%=userId%>님이 퇴장하셨습니다.");
 	    });
 	</script>
 </body>
