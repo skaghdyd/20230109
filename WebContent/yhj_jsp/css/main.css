@@ -31,7 +31,7 @@ h1 {
 }
 
 .intro_bg {
-  background-image: url('/image/intro.png');
+  background-image: url('../image/intro.png');
   width: 100%;
   height: 718px;
 }
@@ -208,7 +208,7 @@ h1 {
   width: 100%;
   height: 418px;
 
-  background-image: url(/image/concat.png);
+  background-image: url(../image/concat.png);
 }
 
 .main_text2 > ul {

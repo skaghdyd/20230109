@@ -14,9 +14,9 @@
 <meta charset="UTF-8">
 <title>Main</title>
 <style>
-* {
+/* * {
 	background-color: white;
-}
+} */
 
 #main {
 	padding-top: 20px;
@@ -105,7 +105,7 @@
 				webSocket.close();
 			} else {
 				$("#chatBox").show();
-				webSocket = new WebSocket('ws://172.30.1.77:8080/____jspProject/broadcasting');
+				webSocket = new WebSocket('ws://172.30.1.77:8080<%=request.getContextPath() %>/broadcasting');
 				webSocket.onerror = function(event) {
 			        onError(event)
 			    };
