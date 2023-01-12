@@ -62,7 +62,7 @@ public class UserDAO {
 	
 	
 	public int register(User user) {
-		String sql = "insert into member values (member_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into member values (member_seq.nextval,?,?,?,?,?,?,?,?,?,?,sysdate,?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user.getUserId());
@@ -75,8 +75,7 @@ public class UserDAO {
 			pstmt.setString(8, user.getUserDetailAdd());
 			pstmt.setString(9, user.getUserGender());
 			pstmt.setString(10,user.getUserBirth());
-			pstmt.setString(11, "sysdate");
-			pstmt.setInt(12, user.getUserPoint());
+			pstmt.setInt(11, user.getUserPoint());
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -119,7 +118,48 @@ public class UserDAO {
 		return flag;
 
 	}
+	//아이디 찾기
+	public String findId(String userName, String userPhone) {
+		System.out.println("userName >>> " + userName);
+		System.out.println("userPhone >>> " + userPhone);
+		String id = null;
+		
+		try {
+			String sql = "select userId from member where userName=? and userPhone=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userPhone);			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				System.out.println("****여기까지옴****");
+				id = rs.getString("userId");
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
 	
+	public String findPw(String userId, String userPhone) {
+		String pwd = null;
+		try {
+			String sql = "select userPw from member where userId=? and userPhone=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPhone);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pwd = rs.getString("userPw");
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pwd;
+	}
 	
 	
 	

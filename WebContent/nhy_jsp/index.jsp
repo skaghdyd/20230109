@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./css/index.css" />
 </head>
 <body>
+	<jsp:include page="popup.jsp"/>
 	<jsp:include page="header.jsp"></jsp:include>
 	<section id="main" align=center>
 		<article id="article1">

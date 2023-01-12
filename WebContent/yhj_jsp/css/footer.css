@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#footer_footer {
+	width: 100%;
+}
+
+#footer_footer>table{
+	margin: auto;
+}
+
+.bottomtop {
+	font-size: 15px;
+}
+
+.bottombt {
+	font-size: 12px;
+}

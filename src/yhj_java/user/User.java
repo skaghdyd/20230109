@@ -1,5 +1,7 @@
 package yhj_java.user;
 
+import sun.util.calendar.BaseCalendar.Date;
+
 public class User {
 	private int no;
 	private String userId;

@@ -59,7 +59,7 @@ tr:nth-child(2), tr:nth-child(4), tr:nth-child(6), tr:nth-child(10) {
 	<script
 		src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/yhj_jsp/js/jquery.js"></script>
+		src="<%=request.getContextPath()%>/nhy_jsp/js/jquery.js"></script>
 	<script>
 		$(document)
 				.ready(
@@ -398,6 +398,6 @@ tr:nth-child(2), tr:nth-child(4), tr:nth-child(6), tr:nth-child(10) {
 
 <script src='./js/findinfo.js'></script>
 
-	<%@include file="bottom.jsp"%>
+	<%@include file="footer.jsp"%>
 </body>
 </html>
