@@ -9,10 +9,14 @@
 	href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <link rel="stylesheet" href="./css/main.css" />
 <link rel="stylesheet" href="./css/reset.css" />
+
 </head>
 <body>
+
+
 	<!-- visual -->
 	<div class="sec_visual">
+
 		<div class="visual">
 			<!-- Swiper -->
 			<div class="swiper mySwiper">
@@ -29,16 +33,15 @@
 					<div class="flyIn lineOne">FineApple</div>
 					<div class="flyIn lineTwo">makes</div>
 					<div class="flyIn lineThree">Innovation</div>
-					<div class="flyIn lineFour"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- //visual -->
+
+
 
 	<!-- Swiper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
 	<!-- Initialize Swiper -->
 	<script>
 		var swiper = new Swiper(".mySwiper", {
