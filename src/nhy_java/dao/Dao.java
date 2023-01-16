@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import nhy_java.notice.CommentDto;
 import nhy_java.notice.NoticeDto;
 
 public class Dao {
@@ -28,14 +29,6 @@ public class Dao {
 	private Connection conn = getConnect();
 
 	private Connection getConnect() {
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thisisjava", "java", "mysql");
-//			System.out.println("DB 접속!");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		try {
 			Properties prop = new Properties();
 			String path = Dao.class.getResource("db.properties").getPath();
@@ -57,13 +50,6 @@ public class Dao {
 
 	public List<NoticeDto> notice_selectAll(int selectedPage) {
 		List<NoticeDto> list = new ArrayList<NoticeDto>();
-//		String sql = "select *\n"
-//				+ "from(\n"
-//				+ "select @rownum:=@rownum+1 rn, a.*\n"
-//				+ "from notice a\n"
-//				+ "where (@rownum:=0)=0 order by a.idx desc\n"
-//				+ ")list\n"
-//				+ "where rn>? and rn<=?";
 		String sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
 				+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
 				+ "            from notice order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
@@ -100,7 +86,6 @@ public class Dao {
 			pstmt.setInt(1, idx);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				// int idx = rs.getInt("idx");
 				String author = rs.getString("author");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
@@ -226,7 +211,128 @@ public class Dao {
 		}
 	}
 	
+	public int notice_addHit(int idx) {
+		String sql = "update notice\r\n" + 
+				"set hit = hit+1\r\n" + 
+				"where idx = ?";
+		int rs = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
+	
 	public static void main(String[] args) {
 		Dao.getInstance();
+	}
+	
+	public List<CommentDto> notice_comment_select(int notice_idx) {
+		String sql = "select comment_idx, author, content, createDate\r\n"
+				+ "from noticeComment\r\n"
+				+ "where notice_idx = ?\r\n"
+				+ "order by comment_idx";
+		
+		List<CommentDto> list = new ArrayList<CommentDto>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_idx);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int comment_idx = rs.getInt(1);
+				String author = rs.getString(2);
+				String content = rs.getString(3);
+				String createDate = rs.getString(4);
+				CommentDto commentDto = new CommentDto(0, comment_idx, author, content, createDate);
+				list.add(commentDto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public int notice_comment_write(CommentDto commentDto) {
+		String sql = "insert into noticecomment (notice_idx, comment_idx, author, content, createDate)\r\n" + 
+				"values (?,?,?,?,?)";
+		int rs = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentDto.getNotice_idx());
+			pstmt.setInt(2, notice_comment_getMaxIdx(commentDto.getNotice_idx()));
+			pstmt.setString(3, commentDto.getAuthor());
+			pstmt.setString(4, commentDto.getContent());
+			pstmt.setString(5, commentDto.getCreateDate());
+			rs = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return rs;
+	}
+	
+	private int notice_comment_getMaxIdx(int notice_idx) {
+		String sql = "select case when max(comment_idx) is null then 1 else max(comment_idx)+1 end as comment_idx_max\r\n"
+				+ "from noticecomment\r\n"
+				+ "where notice_idx = ?";
+		int comment_idx_max = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_idx);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				comment_idx_max = rs.getInt("comment_idx_max");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return comment_idx_max;
+	}
+	
+	public int notice_comment_delete(int notice_idx, int comment_idx) {
+		String sql = "delete from noticeComment\r\n" + 
+				"where notice_idx = ?\r\n" + 
+				"and comment_idx = ?";
+		int rs = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_idx);
+			pstmt.setInt(2, comment_idx);
+			rs = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return rs;
+	}
+	
+	public int notice_comment_modify(int notice_idx, int comment_idx, String modifyContent) {
+		String sql = "update noticeComment\r\n" +
+				"set content = ?\r\n" +
+				"where notice_idx = ?\r\n" + 
+				"and comment_idx = ?";
+		int rs = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, modifyContent);
+			pstmt.setInt(2, notice_idx);
+			pstmt.setInt(3, comment_idx);
+			rs = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
 	}
 }

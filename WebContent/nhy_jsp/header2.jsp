@@ -13,7 +13,7 @@
 	rel="stylesheet">
 <script src="https://kit.fontawesome.com/089f36b7b1.js"
 	crossorigin="anonymous"></script>
-<script src="js/header.js" defer></script>
+<script src="js/header2.js" defer></script>
 </head>
 <body>
 	<nav class="navbar">

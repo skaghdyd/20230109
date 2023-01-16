@@ -5,11 +5,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-if(session.getAttribute("loginId")==null){
+if(session.getAttribute("userId")==null){
 	PrintWriter writer = response.getWriter();
 	writer.println("<script>");
 	writer.println("alert('로그인을 해주세요')");
-	writer.println("history.back()");
+	writer.println("window.parent.location.href='login.jsp'");
 	writer.println("</script>");
 }
 Dao dao = Dao.getInstance();
