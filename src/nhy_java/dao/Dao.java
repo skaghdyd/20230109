@@ -26,33 +26,23 @@ public class Dao {
 	}
 
 	private Connection conn = getConnect();
-
 	private Connection getConnect() {
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/thisisjava", "java", "mysql");
-//			System.out.println("DB 접속!");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		try {
 			Properties prop = new Properties();
 			String path = Dao.class.getResource("db.properties").getPath();
 			path = URLDecoder.decode(path, "utf-8");
 			prop.load(new FileReader(path));
 			String driver = prop.getProperty("driver");
+			Class.forName(driver);
 			String url = prop.getProperty("url");
 			String user = prop.getProperty("user");
-			String password = prop.getProperty("password");
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url, user, password);
-			System.out.println("DB연결 성공!");
-		} catch (ClassNotFoundException | SQLException | IOException e) {
-			// TODO Auto-generated catch block
+			String pw = prop.getProperty("pw");
+			Connection conn = DriverManager.getConnection(url, user, pw);
+			return conn;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return conn;
+		return null;
 	}
 
 	public List<NoticeDto> notice_selectAll(int selectedPage) {

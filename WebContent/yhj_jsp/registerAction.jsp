@@ -8,7 +8,7 @@
 request.setCharacterEncoding("UTF-8");
 %>
 <jsp:useBean id="user" class="yhj_java.user.User" scope="page" />
-<jsp:setProperty property="*" name="user" />
+<jsp:setProperty name="user"  property="*" />
 <%
 String userId = null;
 if(session.getAttribute("userId") != null) {

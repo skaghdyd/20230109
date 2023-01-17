@@ -23,3 +23,17 @@ create table member(
 );
 
 insert into members values(memberseq.nextval,?,?,?,?,?,?,?,?,?,?,?,?);
+
+
+
+CREATE TABLE Product(
+    productid    NUMBER       PRIMARY KEY, --- 상품 아이디
+    pname       VARCHAR2(100) NOT NULL, --- 상품명
+    unitPrice  NUMBER        DEFAULT 0, --- 상품 가격
+    description VARCHAR2(300) NOT NULL, --- 상품 설명
+    manufacturer VARCHAR2(100) NOT NULL, --- 제조사 
+    category  VARCHAR2(100) NOT NULL, --- 분류
+    unitsInSock NUMBER        DEFAULT 0, --- 재고 수량
+    time_posted DATE          NOT NULL --- 업데이트 날짜
+    
+)
