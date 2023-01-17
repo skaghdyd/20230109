@@ -34,7 +34,7 @@ if (file == null) {
 	String now = new SimpleDateFormat("yyyyMMddHHmmssS").format(new Date());//현재시간
 	
 	//신규 파일명 : 세션아이디_현재시간_확장자
-	newFile = new File(savePath + File.separator + session.getAttribute("loginId") + "_" + now + extension);
+	newFile = new File(savePath + File.separator + session.getAttribute("userId") + "_" + now + extension);
 	file.renameTo(newFile);//파일명 수정
 	System.out.println("**********************************************************");
 	System.out.println("saveFile Name : " + file.getName());
@@ -43,13 +43,13 @@ if (file == null) {
 	System.out.println("**********************************************************");
 }
 	System.out.println("**********************************************************");
-	System.out.println("Author : " + session.getAttribute("loginId"));
+	System.out.println("Author : " + session.getAttribute("userId"));
 	System.out.println("Title : " + mr.getParameter("title"));
 	System.out.println("Content : " + mr.getParameter("content"));
 	System.out.println("**********************************************************");
 	
 	int idx = 0;
-	String author = (String) session.getAttribute("loginId");
+	String author = (String) session.getAttribute("userId");
 	String title = mr.getParameter("title");
 	String content = mr.getParameter("content");
 	String saveFileName = file==null ? null : file.getName();

@@ -120,8 +120,6 @@ public class UserDAO {
 	}
 	//아이디 찾기
 	public String findId(String userName, String userPhone) {
-		System.out.println("userName >>> " + userName);
-		System.out.println("userPhone >>> " + userPhone);
 		String id = null;
 		
 		try {
@@ -131,7 +129,6 @@ public class UserDAO {
 			pstmt.setString(2, userPhone);			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				System.out.println("****여기까지옴****");
 				id = rs.getString("userId");
 			}
 				

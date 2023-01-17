@@ -21,7 +21,7 @@
 		</div>
 
 	<div class="logo image">
-		<img src="image/mama.png">
+		<a href = index.jsp><img src="image/mama.png"></a>
 	</div>
 		<div class="form-group">
 			<input type="text" class="form-control" name="userId"

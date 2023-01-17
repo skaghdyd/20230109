@@ -16,7 +16,7 @@
 	border: 1px solid black;
 }
 
-#titleDiv, #contentDiv {
+#titleDiv, #contentDiv, #commentDiv {
 	border: 1px solid black;
 }
 
@@ -26,7 +26,7 @@
 	border: none;
 }
 
-#content {
+#content, #comment_content {
 	width: 100%;
 	height: 100%;
 	border: none;
@@ -35,4 +35,13 @@
 
 #main * {
 	margin-bottom: 5px;
-} 
+}
+
+.commentList {
+	border:1px solid black;
+}
+
+.commentHeader {
+	display:flex;
+	justify-content: flex-end;	
+}

@@ -13,16 +13,16 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
+
 
 	<br>
 	<br>
 	<form method="post" action="loginAction.jsp">
 		</div>
 
-	<div class="logo image">
-		<img src="image/mama.png">
-	</div>
+		<div class="logo image">
+			<a href=index.jsp><img src="image/mama.png"></a>
+		</div>
 		<div class="form-group">
 			<input type="text" class="form-control" name="userId"
 				placeholder="아이디">
@@ -59,7 +59,8 @@
 	<br>
 	<footer class="footer">
 		<div class="footer-info">
-			<a href=findId.jsp>아이디 찾기</a> | <a href=findPw.jsp>비밀번호 찾기</a> | <a href="register.jsp">회원가입</a>
+			<a href=findId.jsp>아이디 찾기</a> | <a href=findPw.jsp>비밀번호 찾기</a> | <a
+				href="register.jsp">회원가입</a>
 		</div>
 	</footer>
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -75,7 +76,7 @@
 						url : '/v2/user/me',
 						success : function(response) {
 							console.log(response)
-							
+
 						},
 						fail : function(error) {
 							console.log(error)

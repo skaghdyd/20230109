@@ -86,7 +86,7 @@ PageVO pageVO = new PageVO(currentPage, 10, totalPost);
 				%>
 			</div>
 			<%
-			if(session.getAttribute("loginId")!=null){
+			if(session.getAttribute("userId")!=null){
 			%>
 			<div align="right">
 				<input id="noticeWrite" type="button" value="글쓰기" onclick="location.href='noticeWrite.jsp'">
