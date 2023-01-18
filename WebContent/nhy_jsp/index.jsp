@@ -18,7 +18,7 @@
 </head>
 <body>
 	<jsp:include page="popup.jsp"/>
-	<jsp:include page="header2.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 	<section id="main" align=center>
 		<article id="article1">
 			<iframe id="iframe1" name="iframe1" src="main.jsp" width="1000px" height="700px" seamless></iframe>
@@ -33,8 +33,11 @@
 	            <input type="button" value="send" onclick="send()">
 			</div>
 		</div>
-		<div id="chatButton" align="center" onclick="chatToggle()">채팅</div>
+		<div id="chatButton" align="center" onclick="chatToggle()">
+			<i class="fa-regular fa-comment-dots"></i>
+		</div>
 	</div>
+	<script src="https://kit.fontawesome.com/089f36b7b1.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		let webSocket;
