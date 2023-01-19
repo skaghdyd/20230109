@@ -6,6 +6,7 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+
 <title>상품 등록</title>
 </head>
 <body>
@@ -18,7 +19,6 @@
 
 	<div class="container">
 	
-
 		<form name="newProduct" action="processAddProduct.jsp"
 			class="form-horizontal" method="post" >
 

@@ -1,78 +1,82 @@
+<%@page import="yhj_java.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
 <link rel="stylesheet" href="./css/header.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+	rel="stylesheet">
+<script src="https://kit.fontawesome.com/089f36b7b1.js"
+	crossorigin="anonymous"></script>
+<script src="js/header.js" defer></script>
 </head>
 <body>
-	<header id="header_header">
-		<div id="logoDiv">
-			<a target="iframe1" href="main.jsp"> <img id="logo"
-				src="..\\yhj_jsp\\image\\mama.png" alt="logo">
-			</a>
+	<nav class="navbar">
+
+		<div class="navbar_logo">
+			<i class="fa-solid fa-store"></i> <a target="iframe1" href="main.jsp">
+				Market Kurly</a>
 		</div>
-		<div>
+		<form class="search1">
+			<input class="search" type="search" placeholder="Search" /> <span
+				class=text>검색</span>
+		</form>
+		<ul class="navbar_menu">
+			<li><a href="" class="aa">신상품</a></li>
+			<li><a href="" class="aa">베스트</a></li>
+			<li><a href="" class="aa">알뜰쇼핑</a></li>
+			<li><a href="" class="aa">특가/혜택</a></li>
+			<li><a target="iframe1" href="notice.jsp" class="aa">고객센터</a></li>
+
+		</ul>
+
+		<ul class="navbar_login">
 			<%
-				if (session.getAttribute("userId") == null) {
+				String Sid = (String) session.getAttribute("userId");
+				if (Sid == null) {
 			%>
-			<a href="login.jsp">로그인</a>
-			<a href="register.jsp">회원가입</a>
+			<li><a href="login.jsp">로그인</a></li>
+			<li><a href="register.jsp">회원가입</a></li>
+			<%
+				} else if (Sid.equals("admin")) {
+					session.setAttribute("adminName", "관리자");
+					String admin = (String)session.getAttribute("adminName");
+			%>
+			<li><%=admin%>님 환영합니다</li>
+			<li><a href="logoutAction.jsp">로그아웃</a></li>
+			<li><a href="admin.jsp">관리자 페이지</a></li>
+			
 			<%
 				} else {
 			%>
-			<a href="logoutAction.jsp">로그아웃</a> 
-		
+			<li><%=Sid%>님 환영합니다</li>
+			<li><a href="logoutAction.jsp">로그아웃</a></li>
 			<%
 				}
 			%>
 
-		</div>
-	</header>
-	<div align="right">
-		<a target="iframe1" href="">찜상품보기</a> <a target="iframe1" href="">장바구니</a>
-	</div>
-	<nav id="header_nav">
-		<form>
-			<input type="search" placeholder="Search" /> <span>검색</span>
-		</form>
-		<ul id="header_nav_menu">
-			<li><a target="iframe1" href="">메뉴1</a>
-				<ul class="header_nav_sub_menu">
-					<li>메뉴1_하위1</li>
-					<li>메뉴1_하위2</li>
-					<li>메뉴1_하위3</li>
-				</ul></li>
-			<li><a target="iframe1" href="">메뉴2</a>
-				<ul class="header_nav_sub_menu">
-					<li>메뉴2_하위1</li>
-					<li>메뉴2_하위2</li>
-					<li>메뉴2_하위3</li>
-				</ul></li>
-			<li><a target="iframe1" href="">메뉴3</a>
-				<ul class="header_nav_sub_menu">
-					<li>메뉴3_하위1</li>
-					<li>메뉴3_하위2</li>
-					<li>메뉴3_하위3</li>
-				</ul></li>
-			<li><a target="iframe1" href="">메뉴4</a>
-				<ul class="header_nav_sub_menu">
-					<li>메뉴4_하위1</li>
-					<li>메뉴4_하위2</li>
-					<li>메뉴4_하위3</li>
-				</ul></li>
-			<li><a target="iframe1" href="notice.jsp">고객센터</a>
-				<ul class="header_nav_sub_menu">
-					<li>고객센터_하위메뉴1</li>
-					<li>고객센터_하위메뉴2</li>
-					<li>고객센터_하위메뉴3</li>
-					<li>고객센터_하위메뉴4</li>
-				</ul>
-			<li>
+
 		</ul>
+
+		<br>
+		<ul class="navbar_icons">
+			<li><i class="fa-solid fa-cart-shopping"></i></li>
+			<li><i class="fa-sharp fa-solid fa-heart"></i></li>
+		</ul>
+
+		<a href="#" class="navbar_togleBtn"> <i
+			class="fa-sharp fa-solid fa-bars"></i>
+		</a>
+
+
 	</nav>
+
+
 </body>
 </html>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.io.PrintWriter"%>	
 <%
 	String userId = (String) session.getAttribute("userId");
 	if(userId==null){
@@ -8,7 +7,7 @@
 	} else {
 		System.out.println("세션 있음");
 	}
-%> 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +33,7 @@
 	            <input type="button" value="send" onclick="send()">
 			</div>
 		</div>
-		<div id="chatButton" align="center" onclick="chatToggle()">채팅</div>
+		<div id="chatButton" align="center" onclick="chatToggle()"><i class="fas fa-comments fa-lg"></i></div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script type="text/javascript">

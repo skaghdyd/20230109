@@ -1,4 +1,3 @@
-<%@page import="yhj_java.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,7 +48,7 @@
 			<li><%=Sid%>님 환영합니다</li>
 			<li><a href="logoutAction.jsp">로그아웃</a></li>
 			<li><a href="">관리자 페이지</a></li>
-			<li><a href="">상품 등록</a></li>
+			<li><a href="ProductAdd.jsp">상품 등록</a></li>
 			<li><a href="">상품 수정</a></li>
 			<li><a href="">상품 삭제</a></li>
 			<li><a href="">상품 조회</a></li>

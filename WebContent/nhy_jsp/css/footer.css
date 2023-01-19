@@ -2,10 +2,17 @@
 
 #footer_footer {
 	width: 100%;
+	background: #263343;
+	color: white;
 }
 
-#footer_footer>table{
+#footer_footer>table {
 	margin: auto;
+}
+
+#footer_footer>table>tr {
+	margin: auto;
+	background: #263343;
 }
 
 .bottomtop {
