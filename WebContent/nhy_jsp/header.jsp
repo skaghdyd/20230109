@@ -50,7 +50,7 @@
 			%>
 			<li><%=admin%>님 환영합니다</li>
 			<li><a href="logoutAction.jsp">로그아웃</a></li>
-			<li><a href="admin.jsp">관리자 페이지</a></li>
+			<li><a href="adminmain.jsp">관리자 페이지</a></li>
 			
 			<%
 				} else {

@@ -62,8 +62,12 @@ img {
 <%-- 				<p><%=product.getManufacturer() %> --%>
 <%-- 				<p><%=product.getCategory() %> --%>
 <%-- 				<p><%=product.getUnitsInSock() %> --%>
-				<p> <a href="product.jsp?id=<%=product.getProductId()%>"
+				<p> <a href="productDetail.jsp?no=<%=product.getNo() %>"
 				class="btn btn-secondary" role="button">상세 정보 &raquo;</a>
+					 <a href="productEdit.jsp?no=<%=product.getNo() %>"
+				class="btn btn-warning" role="button">상품 수정 &raquo;</a>
+				<p><a href="processDeleteProduct.jsp?no=<%=product.getNo() %>"
+				class="btn btn-danger" role="button">상품 삭제 &raquo;</a>
 				
 			</div>
 			<%

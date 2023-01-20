@@ -11,10 +11,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Main</title>
 <link rel="stylesheet" href="./css/reset.css" />
 <link rel="stylesheet" href="./css/index.css" />
+<meta charset="UTF-8">
+<title>Main</title>
 </head>
 <body>
 	<jsp:include page="popup.jsp"/>

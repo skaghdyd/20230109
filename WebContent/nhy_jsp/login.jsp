@@ -52,9 +52,7 @@
 		width="100%" height="100%" />
 	</a>
 
-	<a href="javascript:void(0)" onclick="kakaoLogout();"> <span>카카오
-			로그아웃</span>
-	</a>
+	
 	<br>
 	<br>
 	<footer class="footer">

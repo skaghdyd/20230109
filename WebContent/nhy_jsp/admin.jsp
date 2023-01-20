@@ -103,11 +103,11 @@ body {
 			<div class="col-xl-2 bg-dark"
 				style="position: fixed; left: 0; top: 0; font-size: 20px; height: 100vh">
 				<div>
-					<a href=admin.jsp><img src="./image/11111.png" alt=""
+					<a href=adminmain.jsp><img src="./image/11111.png" alt=""
 						width="50" class="rouded-circle mr-3" /></a>
 				</div>
 				<div>
-					<a href="admin.jsp"
+					<a href="adminmain.jsp"
 						class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4 bottom-border"><h2>관리자
 							기능 목록</h2></a>
 				</div>
@@ -118,8 +118,8 @@ body {
 							class="fa-sharp fa-solid fa-store"></i> 상품 관리
 					</a></li>
 					<li class="navbar-list"><a href="ProductAdd.jsp">상품 등록</a><br />
-						<a href="productList.jsp">상품 목록</a><br /> <a href="">상품 수정</a><br />
-						<a href="">상품 제거</a></li>
+						<a href="productList.jsp">상품 목록</a><br /> 
+						
 				</ul>
 				<ul class="navbar-nav flex-column mt-4">
 					<li class="nav-item"><a href="#"
