@@ -23,7 +23,7 @@
 			<a href="logout.jsp">logout</a>
 		</div>
 
-		<form name="newProduct" action="processAddProduct.jsp"
+		<form name="newProduct" action="processAddProduct.jsp" enctype="multipart/form-data"
 			class="form-horizontal" method="post" >
 
 
@@ -79,13 +79,13 @@
 						class="form-control">
 				</div>
 			</div>
-<!-- 
+ 
 			<div class="form-group row">
 				<label class="col-sm-2">상품 이미지</label>
 				<div>
-					<input type="file" name="productImage" class="form-control">
+					<input type="file" name="file" class="form-control">
 				</div>
-			</div> -->
+			</div>
 
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10">

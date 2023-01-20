@@ -6,6 +6,7 @@
 
 <!doctype html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -103,12 +104,32 @@
                     </div>
 
                     <div class="allegy">알레르기 유발 요인 : 우유</div>
-                    
-                    
+
+
+				<script type="text/javascript">
+
+	
+					function addToCart() {
+						// 확인 true 취소 false
+						if (confirm("상품을 장바구니에 추가하시겠습니까?")) { // 확인
+							document.addForm.submit();
+						} else { // 취소
+							document.addForm.reset();
+						}
+					}
+				</script>
+
+				<p>	
+				<form name="addForm" method="post"
+					action="addCart.jsp?id=${product.productId}">
+					<a href="#" class="btn btn-info" onclick="addToCart()">상품주문 &raquo;</a>
+					<a href="cart.jsp" class="btn btn-warning">장바구니&raquo;</a>
+					<a href="products.jsp" class="btn btn-secondary"> 상품목록&raquo;</a>	
+				</form>
+				</p>
                     
                    <!-- 리뷰 (나중!!)  -->
-
-                    <p class="reviewnav">리뷰</p>
+				<p class="reviewnav">리뷰</p>
 
                     <div class="Allcomment"> <!--모든 댓글 내용을 담아내는 div 태그-->
                         <div class="comment"> <!-- comment class는 각각 하나의 댓글을 담아냄 -->

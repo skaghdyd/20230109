@@ -7,10 +7,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
-
-import nhy_java.dao.Dao;
-import yhj_java.user.UserDAO;
 
 public class ProductDAO {
 	// 싱글턴 패턴
@@ -47,7 +46,7 @@ public class ProductDAO {
 
 	
 	public int productAdd(Product product){
-		String sql = "insert into product values (product_seq.nextval,?,?,?,?,?,?,?)";
+		String sql = "insert into product values (product_seq.nextval,?,?,?,?,?,?,?,?,?)";
 //		,sysdate
 		try {
 			System.out.println("여기까지 잘 들어옴!!");
@@ -59,6 +58,8 @@ public class ProductDAO {
 			pstm.setString(5, product.getManufacturer());
 			pstm.setString(6,product.getCategory());
 			pstm.setInt(7, product.getUnitsInSock());
+			pstm.setString(8,product.getFileName());
+			pstm.setString(9,product.getFileRealName());
 			int result = pstm.executeUpdate();
 			return result;
 //			int res = pstm.executeUpdate();
@@ -70,5 +71,43 @@ public class ProductDAO {
 		}
 		return 0; // 데이터베이스 오류
 	}
-	
+
+	public List<Product> selectAll() {
+		List<Product> lst = new ArrayList<Product>();
+
+		String sql ="select * from product ORDER BY pro_no DESC";
+
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				
+				
+				product.setProductId(rs.getInt("productId"));
+				product.setPname(rs.getString("pname"));
+				product.setUnitPrice(rs.getInt("unitPrice"));
+				product.setDescription(rs.getString("description"));
+				product.setManufacturer(rs.getString("manufacturer"));
+				product.setCategory(rs.getString("category"));
+				product.setUnitsInSock(rs.getInt("unitsInSock"));
+				product.setFileRealName(rs.getString("fileRealName"));
+				
+				lst.add(product);
+			}
+			rs.close();
+			pstm.close();
+			return lst;
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+
 }
+
+

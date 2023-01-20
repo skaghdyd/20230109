@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<link type="text/css" href="Cart.css" rel="stylesheet">
 
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+
+<link  href="Cart.css" >
+    <link href="./css/Cart.css" rel="stylesheet" type="text/css" />
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title> 개인 장바구니 기능 이벤트로 구현 </title>
@@ -39,7 +40,7 @@
                 <div class="row data">
                     <div class="subdiv">
                         <div class="check"><input type="checkbox" name="buy" value="261" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
-                        <div class="img"><img src="./img/basket2.jpg" width="60"></div>
+                        <div class="img"><img src="" width="60"></div>
                         <div class="pname">
                             <span>노바 요거팜(JP-268T)</span>
                         </div>
@@ -177,7 +178,7 @@ let basket = {
         event.target.parentElement.parentElement.parentElement.remove();
         this.reCalc();
         this.updateUI();
-    }
+    };
  // 숫자 3자리 콤마찍기
 
     Number.prototype.formatNumber = function(){
@@ -199,3 +200,19 @@ let basket = {
 <script src="css/Cart.css"> </script>
 </body>
 </html>
+
+
+----------------------------------
+
+<script type="text/javascript">
+	function addToCart(){
+		// 확인 true 취소 false
+		if(confirm("상품을 장바구니에 추가하시겠습니까?")){ // 확인
+			document.addForm.submit();
+		}else{ // 취소
+			document.addForm.reset();
+		}
+	}
+</script>
+
+
