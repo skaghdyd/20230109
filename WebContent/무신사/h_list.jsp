@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@include file="UserTop.jsp" %>
 <%
 String[] img ={"사진", "사진", "사진", "사진", "사진", "사진", "사진", "사진", "사진"};
 String[] name = {"굴비", "굴비", "굴비", "굴비", "굴비", "굴비", "굴비", "굴비", "굴비"};

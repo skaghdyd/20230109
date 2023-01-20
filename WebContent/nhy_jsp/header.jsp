@@ -22,8 +22,9 @@
 			<i class="fa-solid fa-store"></i> <a target="iframe1" href="main.jsp">
 				Market Kurly</a>
 		</div>
-		<form class= "search1">
-			<input class="search" type="search" placeholder="Search" /> <span class=text>검색</span>
+		<form class="search1">
+			<input class="search" type="search" placeholder="Search" /> <span
+				class=text>검색</span>
 		</form>
 		<ul class="navbar_menu">
 			<li><a href="" class="aa">신상품</a></li>
@@ -35,21 +36,36 @@
 		</ul>
 
 		<ul class="navbar_login">
-
 			<%
-				if (session.getAttribute("userId") == null) {
+				String Sid = (String) session.getAttribute("userId");
+				if (Sid == null) {
 			%>
 			<li><a href="login.jsp">로그인</a></li>
 			<li><a href="register.jsp">회원가입</a></li>
 			<%
+				} else if (Sid.equals("admin")) {
+			%>
+			<li><%=Sid%>님 환영합니다</li>
+			<li><a href="logoutAction.jsp">로그아웃</a></li>
+			<li><a href="">관리자 페이지</a></li>
+			<li><a href="ProductAdd.jsp">상품 등록</a></li>
+			<li><a href="">상품 수정</a></li>
+			<li><a href="">상품 삭제</a></li>
+			<li><a href="">상품 조회</a></li>
+			
+			<%
 				} else {
 			%>
+			<li><%=Sid%>님 환영합니다</li>
 			<li><a href="logoutAction.jsp">로그아웃</a></li>
 			<%
 				}
 			%>
 
+
 		</ul>
+
+		<br>
 		<ul class="navbar_icons">
 			<li><i class="fa-solid fa-cart-shopping"></i></li>
 			<li><i class="fa-sharp fa-solid fa-heart"></i></li>

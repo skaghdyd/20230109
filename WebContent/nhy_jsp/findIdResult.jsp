@@ -1,4 +1,4 @@
-<%@page import="yhj_java.user.UserDAO"%>
+<%@ page import="yhj_java.user.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 

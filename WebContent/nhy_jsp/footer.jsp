@@ -7,7 +7,7 @@
 <title>Footer</title>
 <link rel="stylesheet" href="./css/footer.css" />
 </head>
-<body>
+<body class="body">
 	<br>
 	<hr width=100% class="categoryhr">
 	<footer id="footer_footer">

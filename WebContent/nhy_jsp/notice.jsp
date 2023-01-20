@@ -87,11 +87,13 @@ PageVO pageVO = new PageVO(currentPage, 10, totalPost);
 			</div>
 			<%
 			if(session.getAttribute("userId")!=null){
+				if(session.getAttribute("userId").equals("admin")){
 			%>
 			<div align="right">
 				<input id="noticeWrite" type="button" value="글쓰기" onclick="location.href='noticeWrite.jsp'">
 			</div>
 			<%
+				}
 			}
 			%>
 		</section>

@@ -6,6 +6,7 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+
 <title>상품 등록</title>
 </head>
 <body>
@@ -18,8 +19,7 @@
 
 	<div class="container">
 	
-
-		<form name="newProduct" action="processAddProduct.jsp" enctype="multipart/form-data"
+		<form name="newProduct" action="processAddProduct.jsp"
 			class="form-horizontal" method="post" >
 
 
@@ -75,13 +75,13 @@
 						class="form-control">
 				</div>
 			</div>
- 
+<!-- 
 			<div class="form-group row">
 				<label class="col-sm-2">상품 이미지</label>
 				<div>
-					<input type="file" name="file" class="form-control">
+					<input type="file" name="productImage" class="form-control">
 				</div>
-			</div>
+			</div> -->
 
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10">

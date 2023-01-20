@@ -22,7 +22,7 @@ public class ProductDAO {
 	private Connection con = getConnect();
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-
+	
 	private Connection getConnect() {
 		try {
 			Properties prop = new Properties();
@@ -106,6 +106,34 @@ public class ProductDAO {
 
 		return null;
 
+	}
+
+
+	public List<Product> getAllProducts(){
+		List<Product> products = new ArrayList<Product>();
+		String sql = "select * from product ORDER BY pro_no DESC";
+	
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) { // rs.next()는 다음값이 존재하는가를 묻는 것임. 값이 있으면 true를 반환하기에 없을때까지 돌 것임.
+				// 고로 전체 멤버빈객체를 구성할 정보 긁어옴
+				Product product = new Product(); // 반복문 돌때마다 새로운 멤버빈객체를 만들어서 추가해야 하기에 안에서 선언
+				
+				product.setProductId(rs.getInt("productId"));
+				product.setPname(rs.getString("pname"));
+				product.setUnitPrice(rs.getInt("unitPrice"));
+				product.setDescription(rs.getString("description"));
+				product.setManufacturer(rs.getString("manufacturer"));
+				product.setCategory(rs.getString("category"));
+				product.setUnitsInSock(rs.getInt("unitsInSock"));
+				product.setFileRealName(rs.getString("fileRealName"));
+				
+				products.add(product); // 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} return products ; // 모든 멤버빈 객체가 추가된 멤버빈리스트 리턴
 	}
 
 }
