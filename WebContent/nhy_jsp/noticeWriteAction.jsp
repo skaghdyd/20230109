@@ -13,8 +13,7 @@ PrintWriter writer = response.getWriter();
 
 request.setCharacterEncoding("utf-8");
 
-//C:\JavaProgramming\eclipse\source\_20230109\WebContent\nhy_jsp\\uploadFile
-String savePath = "../source"+ request.getServletContext().getContextPath() + "/WebContent/nhy_jsp/uploadFile";
+String savePath = application.getRealPath("/nhy_jsp")+"/uploadFile";
 
 //파일 크기 15MB로 제한
 int sizeLimit = 1024 * 1024 * 15;

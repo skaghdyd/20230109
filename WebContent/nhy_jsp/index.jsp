@@ -33,11 +33,8 @@
 	            <input type="button" value="send" onclick="send()">
 			</div>
 		</div>
-		<div id="chatButton" align="center" onclick="chatToggle()">
-			<i class="fa-regular fa-comment-dots"></i>
-		</div>
+		<div id="chatButton" align="center" onclick="chatToggle()"><i class="fas fa-comments fa-lg"></i></div>
 	</div>
-	<script src="https://kit.fontawesome.com/089f36b7b1.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		let webSocket;
