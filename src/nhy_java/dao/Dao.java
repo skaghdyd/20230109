@@ -46,15 +46,15 @@ public class Dao {
 		return null;
 	}
 
-	public List<NoticeDto> notice_selectAll(int selectedPage) {
+	public List<NoticeDto> notice_selectAll(int selectedPage, int postCount) {
 		List<NoticeDto> list = new ArrayList<NoticeDto>();
 		String sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
 				+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
 				+ "            from notice order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (selectedPage - 1) * 10);
-			pstmt.setInt(2, selectedPage * 10);
+			pstmt.setInt(1, (selectedPage - 1) * postCount);
+			pstmt.setInt(2, selectedPage * postCount);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int idx = rs.getInt("idx");

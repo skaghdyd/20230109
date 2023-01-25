@@ -14,9 +14,10 @@ if (request.getParameter("currentPage") != null) {
 
 Dao dao = Dao.getInstance();
 
-List<NoticeDto> noticeList = dao.notice_selectAll(currentPage);
+int postCount = 10;
+List<NoticeDto> noticeList = dao.notice_selectAll(currentPage, postCount);
 int totalPost = dao.notice_getTotalPost();
-PageVO pageVO = new PageVO(currentPage, 10, totalPost);
+PageVO pageVO = new PageVO(currentPage, postCount, totalPost);
 %>
 <!DOCTYPE html>
 <html>

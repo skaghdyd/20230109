@@ -88,35 +88,41 @@ List<CommentDto> commentList = dao.notice_comment_select(idx);
 					</div>
 				</form>
 			</div>
-			<h1 align="left">댓글목록</h1>
-			<div id="commentListDiv">
-			<!-- for문으로 넣어줌 -->
-			<%
-			for(int i=0; i<commentList.size(); i++){
-				CommentDto commentDto = commentList.get(i);
+			<% 
+			if(commentList.size()>0){
 			%>
-				<form class="commentList" align="left">
-					<div class="commentHeader">
-						<div>
-							<%=commentDto.getAuthor() %> / <%=commentDto.getCreateDate() %>
+				<h1 align="left">댓글목록</h1>
+				<div id="commentListDiv">
+				<!-- for문으로 넣어줌 -->
+				<%
+				for(int i=0; i<commentList.size(); i++){
+					CommentDto commentDto = commentList.get(i);
+				%>
+					<form class="commentList" align="left">
+						<div class="commentHeader">
+							<div>
+								<%=commentDto.getAuthor() %> / <%=commentDto.getCreateDate() %>
+							</div>
+							<div>
+								<%
+								if(commentDto.getAuthor().equals((String)session.getAttribute("userId"))){
+								%>
+								<input class="commentModifyBtn" type="button" onclick="modifyComment(this, <%=idx%>, <%=commentDto.getComment_idx()%>)" value="수정">
+								<input type="button" onclick="deleteComment(<%=idx%>, <%=commentDto.getComment_idx()%>)" value="삭제">
+								<%
+								}
+								%>
+							</div>					
 						</div>
 						<div>
-							<%
-							if(commentDto.getAuthor().equals((String)session.getAttribute("userId"))){
-							%>
-							<input class="commentModifyBtn" type="button" onclick="modifyComment(this, <%=idx%>, <%=commentDto.getComment_idx()%>)" value="수정">
-							<input type="button" onclick="deleteComment(<%=idx%>, <%=commentDto.getComment_idx()%>)" value="삭제">
-							<%
-							}
-							%>
-						</div>					
-					</div>
-					<div>
-						<p class="commentContent">
-							<%=commentDto.getContent() %>
-						</p>
-					</div>
-				</form>
+							<p class="commentContent">
+								<%=commentDto.getContent() %>
+							</p>
+						</div>
+					</form>
+				<%
+				}
+				%>
 			<%
 			}
 			%>
