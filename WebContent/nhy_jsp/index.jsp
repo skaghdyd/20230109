@@ -18,7 +18,7 @@
 </head>
 <body>
 	<jsp:include page="popup.jsp"/>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="header.jsp"/>
 	<section id="main" align=center>
 		<article id="article1">
 			<iframe id="iframe1" name="iframe1" src="main.jsp" width="1000px" height="700px" seamless></iframe>

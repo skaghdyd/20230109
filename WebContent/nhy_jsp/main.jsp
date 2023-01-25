@@ -26,10 +26,9 @@
 			<!-- //Swiper -->
 			<div class="visual_text">
 				<div class="flyinTxtCont">
-					<div class="flyIn lineOne">FineApple</div>
-					<div class="flyIn lineTwo">makes</div>
+					<div class="flyIn lineOne">Market</div>
+					<div class="flyIn lineTwo">Kuly</div>
 					<div class="flyIn lineThree">Innovation</div>
-					<div class="flyIn lineFour"></div>
 				</div>
 			</div>
 		</div>

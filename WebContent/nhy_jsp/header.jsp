@@ -28,7 +28,7 @@
 				class=text>검색</span>
 		</form>
 		<ul class="navbar_menu">
-			<li><a href="" class="aa">신상품</a></li>
+			<li><a target="iframe1" href="newProduct.jsp" class="aa">신상품</a></li>
 			<li><a href="" class="aa">베스트</a></li>
 			<li><a href="" class="aa">알뜰쇼핑</a></li>
 			<li><a href="" class="aa">특가/혜택</a></li>
