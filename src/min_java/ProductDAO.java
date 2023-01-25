@@ -111,6 +111,62 @@ public class ProductDAO {
 		return products; // 모든 멤버빈 객체가 추가된 멤버빈리스트 리턴
 	}
 	
+	public List<Product> getAllProducts(int selectedPage, int postCount) {
+		List<Product> products = new ArrayList<Product>();
+		String sql = "select * \r\n" + 
+				"from(\r\n" + 
+				"    select rownum rn, a.*\r\n" + 
+				"    from (\r\n" + 
+				"        select *\r\n" + 
+				"        from product order by pro_no desc\r\n" + 
+				"    ) a\r\n" + 
+				")\r\n" + 
+				"where rn > ? and rn <= ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (selectedPage - 1) * postCount);
+			pstmt.setInt(2, selectedPage * postCount);
+			rs = pstmt.executeQuery();
+			while (rs.next()) { // rs.next()는 다음값이 존재하는가를 묻는 것임. 값이 있으면 true를 반환하기에 없을때까지 돌 것임.
+				// 고로 전체 멤버빈객체를 구성할 정보 긁어옴
+				Product product = new Product(); // 반복문 돌때마다 새로운 멤버빈객체를 만들어서 추가해야 하기에 안에서 선언
+
+				product.setNo(rs.getInt("pro_no"));
+				product.setProductId(rs.getInt("productId"));
+				product.setPname(rs.getString("pname"));
+				product.setUnitPrice(rs.getInt("unitPrice"));
+				product.setDescription(rs.getString("description"));
+				product.setManufacturer(rs.getString("manufacturer"));
+				product.setCategory(rs.getString("category"));
+				product.setUnitsInSock(rs.getInt("unitsInSock"));
+				product.setFileRealName(rs.getString("fileRealName"));
+
+				products.add(product); //
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return products; // 모든 멤버빈 객체가 추가된 멤버빈리스트 리턴
+	}
+	
+	public int getTotalPost() {
+		String sql = "select count(*) from product";
+		int postCount = 0;
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				postCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return postCount;
+	}
+	
 	public Product getProductById(int proNo) {
 		Product proById = null;
 		String sql = "select * from product where pro_no=?";
