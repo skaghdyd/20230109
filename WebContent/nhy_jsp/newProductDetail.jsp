@@ -50,7 +50,7 @@
 				<p>
 					<a href="#" class="btn btn-info"> 상품 주문 &raquo;</a> <a
 						href="newProduct.jsp" class="btn btn-secondary">상품 목록 &raquo;</a>
-					<a href="" class="btn btn-danger">찜하기
+					<a href="addCart.jsp?productId=<%=product.getProductId()%>&amount=1" class="btn btn-danger">찜하기
 						&raquo;</a>
 			</div>
 		</div>
