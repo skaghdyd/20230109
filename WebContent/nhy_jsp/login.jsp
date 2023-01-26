@@ -13,8 +13,6 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
-
 	<br>
 	<br>
 	<form method="post" action="loginAction.jsp">
@@ -36,13 +34,6 @@
 			</button>
 		</div>
 		</div>
-		<div class="form-check2">
-			<div>
-				<input type="checkbox" class="form-check-input" id="exampleCheck1">
-				<label class="form-check-label" for="exampleCheck1">로그인 상태
-					유지</label>
-			</div>
-		</div>
 	</form>
 	<div class="button-login" align="center">
 		<a id="kakao-login-btn"> </a>
@@ -51,8 +42,6 @@
 		src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
 		width="100%" height="100%" />
 	</a>
-
-	
 	<br>
 	<br>
 	<footer class="footer">
@@ -73,8 +62,8 @@
 					Kakao.API.request({
 						url : '/v2/user/me',
 						success : function(response) {
-							console.log(response)
-
+							console.log(response);
+							location.href = 'loginAction.jsp?kakao=true';
 						},
 						fail : function(error) {
 							console.log(error)
@@ -85,21 +74,6 @@
 					console.log(error)
 				},
 			})
-		}
-		//카카오로그아웃  
-		function kakaoLogout() {
-			if (Kakao.Auth.getAccessToken()) {
-				Kakao.API.request({
-					url : '/v1/user/unlink',
-					success : function(response) {
-						console.log(response)
-					},
-					fail : function(error) {
-						console.log(error)
-					},
-				})
-				Kakao.Auth.setAccessToken(undefined)
-			}
 		}
 	</script>
 </body>

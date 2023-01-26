@@ -17,7 +17,17 @@
 
 </head>
 <body>
-	<%
+	<%	
+		//카카오 로그인하는 경우는 무조건  admin으로 접속하게 된다.
+		String kakao = (String)request.getParameter("kakao");
+		if(kakao!=null){
+			session.setAttribute("userId", "admin");
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("location.href = 'index.jsp'");
+			script.println("</script>");
+		}
+		
 		String userId = null;
 		if (session.getAttribute("userId") != null) {
 			userId = (String) session.getAttribute("userId");
