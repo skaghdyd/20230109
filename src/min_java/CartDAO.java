@@ -83,14 +83,16 @@ public class CartDAO {
 	}
 	
 	//장바구니 목록
-	public List<CartDTO> listCart(){
+	public List<CartDTO> listCart(String userId){
+		System.out.println("userId >>> " + userId);
 		List<CartDTO> c_list = new ArrayList<CartDTO>();
 		String sql = "select m.username, p.pname,p.unitprice,c.amount,p.unitprice*c.amount as money\r\n" + 
 				"				from member m, product p, cart c\r\n" + 
-				"				where m.userid=c.userid and p.pro_no=c.product_id";
+				"				where m.userid=c.userid and p.pro_no=c.product_id and m.userid=?";
 	
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) { 
 				CartDTO cart = new CartDTO(); // 반복문 돌때마다 새로운 멤버빈객체를 만들어서 추가해야 하기에 안에서 선언

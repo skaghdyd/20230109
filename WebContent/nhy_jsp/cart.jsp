@@ -21,7 +21,7 @@
 	<hr>
 	<%
 		CartDAO dao = CartDAO.getInstance();
-		List<CartDTO> cartList = dao.listCart();
+		List<CartDTO> cartList = dao.listCart((String)session.getAttribute("userId"));
 	%> 
 
 	<div class="container">
