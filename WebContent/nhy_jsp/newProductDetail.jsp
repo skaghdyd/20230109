@@ -21,6 +21,7 @@
 	</div>
 	<%
 		int no = Integer.parseInt(request.getParameter("no"));
+		System.out.println("no >>> " + no);
 		ProductDAO dao = ProductDAO.getInstance();
 		Product product = dao.getProductById(no);
 	%>
@@ -47,8 +48,8 @@
 					<%=product.getUnitsInSock()%>
 				<p>
 				<form>
-					<b>수량</b> : 
-					<input type=text name=amount value=1>
+					<b>수량</b> :
+					<input id="amount" type=text name=amount value=1>
 					<input type=button value="증가" onClick="javascript:this.form.amount.value++;">
 					<input type=button value="감소" onClick="javascript:this.form.amount.value--;">
 				</form>	
@@ -57,13 +58,16 @@
 				<p>
 					<a href="#" class="btn btn-info"> 상품 주문 &raquo;</a> <a
 						href="newProduct.jsp" class="btn btn-secondary">상품 목록 &raquo;</a>
-					<a href="addCart.jsp?productId=<%=product.getProductId()%>&amount=1" class="btn btn-danger">찜하기
+					<a onclick="addCart()" class="btn btn-danger">장바구니 담기
 						&raquo;</a>
 			</div>
 		</div>
 	</div>
-
-
-
+	<script>
+		function addCart(){
+			let amount = document.getElementById('amount').value;
+			location.href='addCart.jsp?productId=<%=product.getProductId()%>&amount=' + amount;
+		}
+	</script>
 </body>
 </html>

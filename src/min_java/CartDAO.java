@@ -98,8 +98,8 @@ public class CartDAO {
 				cart.setUsername(rs.getString("username"));
 				cart.setPname(rs.getString("pname"));
 				cart.setUnitprice(rs.getInt("unitprice"));
-				cart.setMoney(rs.getInt("amount"));
-				cart.setAmount(rs.getInt("money"));
+				cart.setAmount(rs.getInt("amount"));
+				cart.setMoney(rs.getInt("money"));
 
 				c_list.add(cart); // 
 			}

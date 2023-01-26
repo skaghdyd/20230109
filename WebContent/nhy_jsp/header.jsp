@@ -66,7 +66,7 @@
 
 		<br>
 		<ul class="navbar_icons">
-			<li><i class="fa-solid fa-cart-shopping"></i></li>
+			<li><a href="cart.jsp" target="iframe1"><i class="fa-solid fa-cart-shopping"></i></a></li>
 			<li><i class="fa-sharp fa-solid fa-heart"></i></li>
 		</ul>
 

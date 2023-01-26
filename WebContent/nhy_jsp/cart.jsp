@@ -18,6 +18,7 @@
 			<h1 class="display-3">상품 정보</h1>
 		</div>
 	</div>
+	<hr>
 	<%
 		CartDAO dao = CartDAO.getInstance();
 		List<CartDTO> cartList = dao.listCart();
@@ -30,20 +31,17 @@
 				for(int i = 0; i < cartList.size(); i++){
 					CartDTO cart = cartList.get(i);
 			%>
-				<h3><%= cart.getUsername()%></h3>
-				<p><%= cart.getPname()%>
-				<p> <b>상품 금액</b> : <%=cart.getUnitprice()%>
-				<p> <b>갯수</b> : <%=cart.getAmount()%>
-				<p> <b>결제 금액</b> : <%=cart.getMoney()%>원
-
-				
-				<p> <a href="#" class="btn btn-info">상품 주문 &raquo;</a>
-					<a href="productList.jsp" class="btn btn-secondary">상품목록 &raquo;</a>
-			
-			</div>
+				<p><b>상품명 : </b><%= cart.getPname()%>
+				<p><b>상품 금액 : </b><%=cart.getUnitprice()%>
+				<p><b>갯수 : </b><%=cart.getAmount()%>
+				<p><b>결제 금액 : </b><%=cart.getMoney()%>원
+				<hr>
 			<%
 				}
 			%>
+				<p> <a href="#" class="btn btn-info">결제하기 &raquo;</a>
+					<a href="newProduct.jsp" class="btn btn-secondary">상품목록 &raquo;</a>
+			</div>
 		</div>
 	</div>
 	

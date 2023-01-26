@@ -15,6 +15,12 @@ cart.setUserid(userId);
 cart.setProduct_id(productId);
 cart.setAmount(amount);
 
+
+
+
+
+
+
 int result = cartDAO.insertCart(cart);
 
 PrintWriter script = response.getWriter();

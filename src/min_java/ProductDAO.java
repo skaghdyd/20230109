@@ -56,24 +56,20 @@ public class ProductDAO {
 	}
 
 	public int productAdd(Product product) {
-		String sql = "insert into product values (product_seq.nextval,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into product values (product_seq.nextval,?,?,?,?,?,?,?,?)";
 		// ,sysdate
 		try {
 			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, product.getProductId());
-			pstm.setString(2, product.getPname());
-			pstm.setInt(3, product.getUnitPrice());
-			pstm.setString(4, product.getDescription());
-			pstm.setString(5, product.getManufacturer());
-			pstm.setString(6, product.getCategory());
-			pstm.setInt(7, product.getUnitsInSock());
-			pstm.setString(8, product.getFileName());
-			pstm.setString(9, product.getFileRealName());
+			pstm.setString(1, product.getPname());
+			pstm.setInt(2, product.getUnitPrice());
+			pstm.setString(3, product.getDescription());
+			pstm.setString(4, product.getManufacturer());
+			pstm.setString(5, product.getCategory());
+			pstm.setInt(6, product.getUnitsInSock());
+			pstm.setString(7, product.getFileName());
+			pstm.setString(8, product.getFileRealName());
 			int result = pstm.executeUpdate();
 			return result;
-			// int res = pstm.executeUpdate();
-			// pstm.close();
-			// return res;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +128,6 @@ public class ProductDAO {
 				Product product = new Product(); // 반복문 돌때마다 새로운 멤버빈객체를 만들어서 추가해야 하기에 안에서 선언
 
 				product.setNo(rs.getInt("pro_no"));
-				product.setProductId(rs.getInt("productId"));
 				product.setPname(rs.getString("pname"));
 				product.setUnitPrice(rs.getInt("unitPrice"));
 				product.setDescription(rs.getString("description"));
@@ -176,7 +171,7 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				proById = new Product();
-				proById.setProductId(rs.getInt("productId"));
+				proById.setProductId(rs.getInt("pro_no"));
 				proById.setPname(rs.getString("pname"));
 				proById.setUnitPrice(rs.getInt("unitPrice"));
 				proById.setDescription(rs.getString("description"));
@@ -192,21 +187,20 @@ public class ProductDAO {
 		return proById;
 	}
 	public int updateProduct(Product pd) {
-		String sql = "update product set productid=?, pname=?, unitprice=?, description=?, manufacturer=?, category=?, fileName=?,filerealName=?"
+		String sql = "update product set pname=?, unitprice=?, description=?, manufacturer=?, category=?, fileName=?,filerealName=?"
 				+ " where pro_no=?";
 		try {
 			pstmt = con.prepareStatement(sql);
             
             //바인드 변수에 인자로 받은 VO객체의 변수값 지정하기
-			pstmt.setInt(1,  pd.getProductId());
-			pstmt.setString(2,  pd.getPname());
-			pstmt.setInt(3,  pd.getUnitPrice());
-			pstmt.setString(4,  pd.getDescription());
-			pstmt.setString(5, pd.getManufacturer());
-			pstmt.setString(6, pd.getCategory());
-			pstmt.setString(7, pd.getFileName());
-			pstmt.setString(8, pd.getFileRealName());
-			pstmt.setInt(9, pd.getNo());
+			pstmt.setString(1, pd.getPname());
+			pstmt.setInt(2, pd.getUnitPrice());
+			pstmt.setString(3, pd.getDescription());
+			pstmt.setString(4, pd.getManufacturer());
+			pstmt.setString(5, pd.getCategory());
+			pstmt.setString(6, pd.getFileName());
+			pstmt.setString(7, pd.getFileRealName());
+			pstmt.setInt(8, pd.getNo());
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
