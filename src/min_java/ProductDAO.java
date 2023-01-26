@@ -59,7 +59,6 @@ public class ProductDAO {
 		String sql = "insert into product values (product_seq.nextval,?,?,?,?,?,?,?,?,?)";
 		// ,sysdate
 		try {
-			System.out.println("여기까지 잘 들어옴!!");
 			PreparedStatement pstm = con.prepareStatement(sql);
 			pstm.setInt(1, product.getProductId());
 			pstm.setString(2, product.getPname());
@@ -175,7 +174,6 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, proNo);
 			rs = pstmt.executeQuery();
-			System.out.println("여기까지 잘 들어옴!!");
 			if(rs.next()) {
 				proById = new Product();
 				proById.setProductId(rs.getInt("productId"));
@@ -186,7 +184,6 @@ public class ProductDAO {
 				proById.setCategory(rs.getString("category"));
 				proById.setUnitsInSock(rs.getInt("unitsInSock"));
 				proById.setFileRealName(rs.getString("fileRealName"));
-				System.out.println("여기까지 잘 들어옴!!2");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -19,28 +19,19 @@ int result = cartDAO.insertCart(cart);
 
 PrintWriter script = response.getWriter();
 if(result > 0){
-	System.out.println("***************");
-	System.out.println(result);
-	System.out.println("***************");
 	script.println("<script>");
 	script.println("alert('장바구니 DB등록 성공')");
 	script.println("location.href = 'cart.jsp'");
 	script.println("</script>");
 } else if(result == 0){
-	System.out.println("***************");
-	System.out.println(result);
-	System.out.println("***************");
 	script.println("<script>");
 	script.println("alert('이미 장바구니에 등록된 상품입니다.')");
-	script.println("location.href = 'cart.jsp'");
+	script.println("history.back()");
 	script.println("</script>");
 } else {
-	System.out.println("***************");
-	System.out.println(result);
-	System.out.println("***************");
 	script.println("<script>");
 	script.println("alert('장바구니 등록 실패! 관리자에게 문의하세요.')");
-	script.println("location.href = 'cart.jsp'");
+	script.println("history.back()");
 	script.println("</script>");
 }
 %>
