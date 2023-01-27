@@ -93,6 +93,13 @@ public class CartDTO {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+
+	@Override
+	public String toString() {
+		return "CartDTO [cart_id=" + cart_id + ", userid=" + userid + ", username=" + username + ", product_id="
+				+ product_id + ", pname=" + pname + ", unitprice=" + unitprice + ", money=" + money + ", amount="
+				+ amount + "]";
+	}
     
     
 }

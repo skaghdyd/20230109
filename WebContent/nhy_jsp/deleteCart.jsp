@@ -14,20 +14,12 @@
 </head>
 <body>
 <%
-
 String userId = (String)session.getAttribute("userId");
-System.out.println("userId >>> " + userId);
-System.out.println("************");
-System.out.println("request.getParameter('productId') >>> " + request.getParameter("productId"));
 int productId = Integer.parseInt(request.getParameter("productId"));
-System.out.println("productId >>> " + productId);
 
 CartDAO cartDAO = CartDAO.getInstance();
-CartDTO  cartdto = new CartDTO();
 
-cartdto.getUserid();
-cartdto.getProduct_id();
-int result = cartDAO.deleteCart(cartdto.getProduct_id(),cartdto.getUserid());
+int result = cartDAO.deleteCart(productId, userId);
 
 PrintWriter script = response.getWriter();
 if(result != 0){
@@ -37,8 +29,6 @@ script.println("location.href = 'cart.jsp'");
 script.println("</script>");
 }
 // cart.jsp로 되돌아가기
-
-
 %>
 </body>
 </html>

@@ -44,6 +44,7 @@ public class CartDAO {
 			return null;
 		}
 
+		
 	//장바구니 table에 입력	
 	public int insertCart(CartDTO cart){ 
 			String sql = "select * from cart where userid=? and product_id=?";			
@@ -68,13 +69,17 @@ public class CartDAO {
 			return -1; // 데이터베이스 오류
 		} 
 	
-	
+	//장바구니 삭제
 	public int deleteCart(int product_id, String userid) {
 		String sql = "delete from cart where product_id=? and userid= ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, product_id);
 			pstmt.setString(2,userid);
+			
+			int result = pstmt.executeUpdate();
+			return result;
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -84,9 +89,8 @@ public class CartDAO {
 	
 	//장바구니 목록
 	public List<CartDTO> listCart(String userId){
-		System.out.println("userId >>> " + userId);
 		List<CartDTO> c_list = new ArrayList<CartDTO>();
-		String sql = "select m.username, p.pname,p.unitprice,c.amount,p.unitprice*c.amount as money\r\n" + 
+		String sql = "select p.pro_no, m.username, p.pname,p.unitprice,c.amount,p.unitprice*c.amount as money\r\n" + 
 				"				from member m, product p, cart c\r\n" + 
 				"				where m.userid=c.userid and p.pro_no=c.product_id and m.userid=?";
 	
@@ -96,7 +100,7 @@ public class CartDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) { 
 				CartDTO cart = new CartDTO(); // 반복문 돌때마다 새로운 멤버빈객체를 만들어서 추가해야 하기에 안에서 선언
-				
+				cart.setProduct_id(rs.getInt("pro_no"));
 				cart.setUsername(rs.getString("username"));
 				cart.setPname(rs.getString("pname"));
 				cart.setUnitprice(rs.getInt("unitprice"));
