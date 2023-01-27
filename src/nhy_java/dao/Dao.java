@@ -50,10 +50,8 @@ public class Dao {
 
 	public List<NoticeDto> notice_selectAll(int selectedPage, int postCount, String searchField, String searchText) {
 		List<NoticeDto> list = new ArrayList<NoticeDto>();
-		System.out.println("searchField >>> " + searchField);
-		System.out.println("searchText >>> " + searchText);
 		String sql;
-		if(searchField==null || searchField.equals("0")) {
+		if(searchField==null || searchField.equals("0") || searchField.equals("null")) {
 			sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
 					+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
 					+ "            from notice order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
@@ -72,7 +70,7 @@ public class Dao {
 		}
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			if(searchField != null && !searchField.equals("0")) {
+			if(searchField != null && !searchField.equals("0") && !searchField.equals("null")) {
 				pstmt.setString(1, "%"+searchText+"%");				
 				pstmt.setInt(2, (selectedPage - 1) * postCount);
 				pstmt.setInt(3, selectedPage * postCount);
@@ -169,7 +167,7 @@ public class Dao {
 	public int notice_getTotalPost(String searchField, String searchText) {
 		String sql;
 		
-		if(searchField==null || searchField.equals("0")) {
+		if(searchField==null || searchField.equals("0") || searchField.equals("null")) {
 			sql = "select count(*) from notice";
 		} else if (searchField.equals("1")) {
 			sql = "select count(*) from notice where title like ?";
@@ -181,7 +179,7 @@ public class Dao {
 		int postCount = 0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			if(searchField != null && !searchField.equals("0")) {
+			if(searchField != null && !searchField.equals("0") && !searchField.equals("null")) {
 				pstmt.setString(1, "%"+searchText+"%");
 			}
 			ResultSet rs = pstmt.executeQuery();
