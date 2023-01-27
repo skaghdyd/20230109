@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
+
 import nhy_java.notice.CommentDto;
 import nhy_java.notice.NoticeDto;
 
@@ -46,15 +48,38 @@ public class Dao {
 		return null;
 	}
 
-	public List<NoticeDto> notice_selectAll(int selectedPage, int postCount) {
+	public List<NoticeDto> notice_selectAll(int selectedPage, int postCount, String searchField, String searchText) {
 		List<NoticeDto> list = new ArrayList<NoticeDto>();
-		String sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
-				+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
-				+ "            from notice order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
+		System.out.println("searchField >>> " + searchField);
+		System.out.println("searchText >>> " + searchText);
+		String sql;
+		if(searchField==null || searchField.equals("0")) {
+			sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
+					+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
+					+ "            from notice order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
+		} else if (searchField.equals("1")) {
+			sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
+					+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
+					+ "            from notice where title like ? order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
+		} else if (searchField.equals("2")) {
+			sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
+					+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
+					+ "            from notice where author like ? order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
+		} else {
+			sql = "select *\r\n" + "from(\r\n" + "    select rownum rn, a.*\r\n"
+					+ "    from (select idx, author, title, content, saveFileName, realFileName, createDate, hit\r\n"
+					+ "            from notice where content like ? order by idx desc) a\r\n" + "    )\r\n" + "where rn > ? and rn <= ?";
+		}
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (selectedPage - 1) * postCount);
-			pstmt.setInt(2, selectedPage * postCount);
+			if(searchField != null && !searchField.equals("0")) {
+				pstmt.setString(1, "%"+searchText+"%");				
+				pstmt.setInt(2, (selectedPage - 1) * postCount);
+				pstmt.setInt(3, selectedPage * postCount);
+			} else {
+				pstmt.setInt(1, (selectedPage - 1) * postCount);
+				pstmt.setInt(2, selectedPage * postCount);
+			}
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int idx = rs.getInt("idx");
@@ -141,11 +166,24 @@ public class Dao {
 		return idx_max;
 	}
 
-	public int notice_getTotalPost() {
-		String sql = "select count(*) from notice";
+	public int notice_getTotalPost(String searchField, String searchText) {
+		String sql;
+		
+		if(searchField==null || searchField.equals("0")) {
+			sql = "select count(*) from notice";
+		} else if (searchField.equals("1")) {
+			sql = "select count(*) from notice where title like ?";
+		} else if (searchField.equals("2")) {
+			sql = "select count(*) from notice where author like ?";
+		} else {
+			sql = "select count(*) from notice where content like ?";
+		}
 		int postCount = 0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			if(searchField != null && !searchField.equals("0")) {
+				pstmt.setString(1, "%"+searchText+"%");
+			}
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				postCount = rs.getInt(1);

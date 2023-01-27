@@ -10,7 +10,8 @@ public class NoticeDto {
 	private String createDate; // 작성일
 	private int hit; // 조회수
 	private String modifyDate; // 수정일
-
+	
+	public NoticeDto() {};
 	public NoticeDto(int idx, String author, String title, String content, String saveFileName, String realFileName, String createDate,
 			int hit, String modifyDate) {
 		super();
